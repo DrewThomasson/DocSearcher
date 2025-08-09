@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PDF Exact Word Page Finder (Flask)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+<script>
+window.APP_CONFIG = {
+  highlightColor: "{{ highlight_color }}"
+};
+</script>
+</head>
+<body>
+<header>
+  <h1>PDF Exact Word Page Finder</h1>
+  <div class="controls">
+    <div class="block">
+      <label class="btn">
+        <input type="file" id="pdfInput" accept="application/pdf" hidden>
+        <span>Upload PDF</span>
+      </label>
+      <span id="fileInfo" class="dim"></span>
+    </div>
+    <div class="block grow">
+      <input type="text" id="wordsInput" placeholder="Enter words (space / comma separated)" autocomplete="off">
+    </div>
+    <button id="searchBtn" class="primary">Search</button>
+
+    <div class="block">
+      <button id="zoomOut" disabled>-</button>
+      <span id="zoomVal">100%</span>
+      <button id="zoomIn" disabled>+</button>
+    </div>
+
+    <div class="block">
+      <button id="loadAllBtn" disabled title="Load any remaining pages">Load All Pages</button>
+    </div>
+  </div>
+</header>
+
+<main id="layout">
+  <aside id="sidebar">
+    <section>
+      <h2>Legend</h2>
+      <div id="legend" class="legend"><span class="dim">No words</span></div>
+    </section>
+    <section>
+      <h2>Pages with Matches</h2>
+      <ul id="resultsList" class="results"></ul>
+      <p class="note">Case-insensitive whole-token matching only.</p>
+    </section>
+    <section>
+      <h2>Page Text</h2>
+      <textarea id="pageText" placeholder="Select a page result"></textarea>
+    </section>
+  </aside>
+  <div id="divider" title="Drag to resize sidebar"></div>
+  <section id="pagesWrap">
+    <div id="pages"></div>
+  </section>
+</main>
+
+<div id="statusBar"><span id="statusMsg">Ready.</span></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
